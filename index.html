@@ -20,7 +20,8 @@
       position: relative;
     }
 
-    #bg-video {
+    #bg-video,
+    #bg-image {
       position: fixed;
       right: 0;
       bottom: 0;
@@ -28,6 +29,10 @@
       min-height: 100%;
       z-index: -1;
       object-fit: cover;
+    }
+
+    #bg-image {
+      display: none;
     }
 
     .container {
@@ -115,6 +120,9 @@
   <source id="video-source" src="https://raw.githubusercontent.com/lpxs8/Babisensi/e890922afb3f011e5660e897f609b53b389f3606/Jogando%20salinha%20%20%20.....%23freefire%20%23freefirevideo%20%23freefiregirls.mp4" type="video/mp4">
 </video>
 
+<!-- IMAGEM DE FUNDO FINAL -->
+<img id="bg-image" src="https://raw.githubusercontent.com/lpxs8/Babisensi/4c253d27b02257a8c81226ca432deb618d606ed8/image_Pippit_202505041405.jpeg" alt="Imagem final" />
+
 <div class="container" id="conteudo">
   <h1>🎉 Parabéns! 🎉</h1>
   <p>Obrigado por comprar a sensi da Babi! Agora você vai ficar capudo igual a MDM 😎🔥</p>
@@ -129,9 +137,9 @@
   </div>
 
   <div class="video-block">
-    <iframe width="300" height="170" src="https://www.youtube.com/embed/ObyYdxY7PYY" frameborder="0" allowfullscreen></iframe>
-    <iframe width="300" height="170" src="https://www.youtube.com/embed/2HMWuHhBCXU" frameborder="0" allowfullscreen></iframe>
-    <iframe width="300" height="170" src="https://www.youtube.com/embed/9m7QxhN52fE" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/ObyYdxY7PYY" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/2HMWuHhBCXU" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/9m7QxhN52fE" allowfullscreen></iframe>
   </div>
 
   <div style="margin-top: 40px;">
@@ -140,28 +148,34 @@
     </a>
   </div>
 
-
-
-<footer>© 2025 BABI MDM</footer>
+  <footer>© 2025 BABI MDM</footer>
 
 <script>
-  // Adiciona função para trocar o vídeo após o término
   const videoElement = document.getElementById('bg-video');
+  const videoSourceElement = document.getElementById('video-source');
+  const imageElement = document.getElementById('bg-image');
+
   const videoSources = [
-    "https://raw.githubusercontent.com/lpxs8/Babisensi/e890922afb3f011e5660e897f609b53b389f3606/Jogando%20salinha%20%20%20.....%23freefire%20%23freefirevideo%20%23freefiregirls.mp4"];
-    
-   
+    "https://raw.githubusercontent.com/lpxs8/Babisensi/e890922afb3f011e5660e897f609b53b389f3606/Jogando%20salinha%20%20%20.....%23freefire%20%23freefirevideo%20%23freefiregirls.mp4",
+    "https://raw.githubusercontent.com/lpxs8/Babisensi/4c253d27b02257a8c81226ca432deb618d606ed8/Jogando%20salinha%20%20_%20%20....%23freefirebrasil%20%23freefire%20%23freefirereels.mp4"
+  ];
+
   let currentVideoIndex = 0;
 
   videoElement.onended = function() {
-    currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
-    const videoSourceElement = document.getElementById('video-source');
-    videoSourceElement.src = videoSources[currentVideoIndex];
-    videoElement.load(); // Carregar o novo vídeo
-    videoElement.play(); // Reproduzir o novo vídeo
+    currentVideoIndex++;
+    if (currentVideoIndex < videoSources.length) {
+      videoSourceElement.src = videoSources[currentVideoIndex];
+      videoElement.load();
+      videoElement.play();
+    } else {
+      videoElement.style.display = 'none';
+      imageElement.style.display = 'block';
+    }
   };
 </script>
 
 </body>
 </html>
+
 
