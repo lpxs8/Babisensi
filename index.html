@@ -111,16 +111,13 @@
 <body>
 
 <!-- VÍDEO DE FUNDO -->
-<video autoplay muted loop playsinline id="bg-video">
-  <source src="https://raw.githubusercontent.com/lpxs8/Babisensi/e890922afb3f011e5660e897f609b53b389f3606/Jogando%20salinha%20%20%20.....%23freefire%20%23freefirevideo%20%23freefiregirls.mp4" type="video/mp4">
+<video autoplay muted id="bg-video">
+  <source id="video-source" src="https://raw.githubusercontent.com/lpxs8/Babisensi/e890922afb3f011e5660e897f609b53b389f3606/Jogando%20salinha%20%20%20.....%23freefire%20%23freefirevideo%20%23freefiregirls.mp4" type="video/mp4">
 </video>
 
 <div class="container" id="conteudo">
   <h1>🎉 Parabéns! 🎉</h1>
   <p>Obrigado por comprar a sensi da Babi! Agora você vai ficar capudo igual a MDM 😎🔥</p>
-  <a href="/login">
-    <button>Login com Discord</button>
-  </a>
 
   <div class="social-section">
     <h2>📢 Caso não siga a MDM em alguma dessas redes, siga agora!</h2>
@@ -132,9 +129,10 @@
   </div>
 
   <div class="video-block">
-     <iframe width="300" height="170" src="https://www.youtube.com/embed/ObyYdxY7PYY" frameborder="0" allowfullscreen></iframe>
-            <iframe width="300" height="170" src="https://www.youtube.com/embed/2HMWuHhBCXU" frameborder="0" allowfullscreen></iframe>
-            <iframe width="300" height="170" src="https://www.youtube.com/embed/9m7QxhN52fE" frameborder="0" allowfullscreen>
+    <iframe width="300" height="170" src="https://www.youtube.com/embed/ObyYdxY7PYY" frameborder="0" allowfullscreen></iframe>
+    <iframe width="300" height="170" src="https://www.youtube.com/embed/2HMWuHhBCXU" frameborder="0" allowfullscreen></iframe>
+    <iframe width="300" height="170" src="https://www.youtube.com/embed/9m7QxhN52fE" frameborder="0" allowfullscreen></iframe>
+  </div>
 
   <div style="margin-top: 40px;">
     <a href="https://www.mediafire.com/file/x3m42ncx59if7bc/Config_FreeFire_MSI_%25281%2529.rar/file" target="_blank">
@@ -144,11 +142,27 @@
 
 
 
-
-
-
-
 <footer>© 2025 BABI MDM</footer>
+
+<script>
+  // Adiciona função para trocar o vídeo após o término
+  const videoElement = document.getElementById('bg-video');
+  const videoSources = [
+    "https://raw.githubusercontent.com/lpxs8/Babisensi/e890922afb3f011e5660e897f609b53b389f3606/Jogando%20salinha%20%20%20.....%23freefire%20%23freefirevideo%20%23freefiregirls.mp4",
+    "https://raw.githubusercontent.com/lpxs8/Babisensi/190027aaf1ab5f5f8c2f0e233ccd0b27e50e75cd/Download.mp4",
+    "https://raw.githubusercontent.com/lpxs8/Babisensi/fca5584e48423bc962df6dd660de1ac7710da9e7/Download%20(1).mp4"
+  ];
+
+  let currentVideoIndex = 0;
+
+  videoElement.onended = function() {
+    currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+    const videoSourceElement = document.getElementById('video-source');
+    videoSourceElement.src = videoSources[currentVideoIndex];
+    videoElement.load(); // Carregar o novo vídeo
+    videoElement.play(); // Reproduzir o novo vídeo
+  };
+</script>
 
 </body>
 </html>
